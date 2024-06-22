@@ -1,0 +1,129 @@
+﻿<Page x:Class="LostYears.Forms.Parents_Form.makeApplicationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:LostYears.Forms.Parents_Form"
+      mc:Ignorable="d" 
+      Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="makeApplicationPage">
+    <Page.Resources>
+        <Style x:Key="PlaceholderTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid Background="#FFF7F7F7">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="Placeholder"
+                                   Text="{TemplateBinding Tag}" 
+                                   Foreground="Gray" 
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0"
+                                   IsHitTestVisible="False"
+                                   Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="False"/>
+                                    <Condition Property="Text" Value="{x:Static sys:String.Empty}"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="True"/>
+                                    <Condition Property="Text" Value="{x:Static sys:String.Empty}"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Placeholder" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MinimalButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+        <!---->
+        <Grid Grid.Column="0" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!---->
+            <TextBox x:Name="nameTB" Grid.Row="0" Grid.Column="0" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Имя" Background="LightGray" Margin="0,10" FontSize="20" Padding="0,10"></TextBox>
+            <TextBox x:Name="surnameTB" Grid.Row="1" Grid.Column="0" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Фамилия" Background="LightGray" Margin="0,10" FontSize="20" Padding="0,10"></TextBox>
+            <TextBox x:Name="midnameTB" Grid.Row="2" Grid.Column="0" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Отчество" Background="LightGray" Margin="0,10" FontSize="20" Padding="0,10"></TextBox>
+            <DatePicker x:Name="birthdayDP" Grid.Row="3" FontSize="20" Margin="0,10" Background="#eeeeee"/>
+            <TextBox x:Name="phoneTB" Grid.Row="4" Grid.Column="0" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Номер телефона" Background="LightGray" Margin="0,10" FontSize="20" Padding="0,10"></TextBox>
+            <TextBox x:Name="addressTB" Grid.Row="5" Grid.Column="0" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Адрес проживания" Background="LightGray" Margin="0,10" FontSize="20" Padding="0,10"></TextBox>
+            <ComboBox x:Name="departmentCB" Grid.Row="6" Margin="0,10" FontSize="20" SelectedIndex="0" Padding="0,10" SelectionChanged="departmentCB_SelectionChanged"/>
+
+            <Button x:Name="confirmButton" Grid.Row="7" Style="{StaticResource MinimalButtonStyle}" Margin="10" Content="Подать заявку" FontSize="20" VerticalAlignment="Center" Click="confirmButton_Click"/>
+        </Grid>
+        <Border Grid.Column="1" Background="#eeeeee">
+            <Grid Margin="10,15,15,15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!---->
+                <TextBlock Grid.Row="0" FontSize="32" FontWeight="DemiBold" Margin="5,10" x:Name="nameDepartmentTB" Background="{x:Null}"/>
+                <Image Grid.Row="1" x:Name="imageFrame"/>
+                <TextBlock Grid.Row="2" FontSize="20" Margin="5,10" x:Name="instrumentDepartmentTB" Background="{x:Null}"/>
+
+                <ScrollViewer Grid.Row="3" Margin="5,10">
+                    <TextBlock FontSize="20" x:Name="descriptionDepartmentTB" Background="{x:Null}" TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+        
+    </Grid>
+</Page>

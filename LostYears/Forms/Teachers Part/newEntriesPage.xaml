@@ -1,0 +1,89 @@
+﻿<Page x:Class="LostYears.Forms.Teachers_Part.newEntriesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LostYears.Forms.Teachers_Part"
+      mc:Ignorable="d" 
+      Background="White"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="newEntriesPage">
+    <Page.Resources>
+        <Style x:Key="MinimalButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <!---->
+        <Border Grid.Column="0" Background="#eeeeee">
+            <ListBox Background="{x:Null}" Margin="15" x:Name="entriesLB" SelectionChanged="entriesLB_SelectionChanged"/>
+        </Border>
+        <Grid Grid.Column="1" Margin="15,50,30,50">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!---->
+            <TextBlock Grid.Row="0" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="nameTB"/>
+            <TextBlock Grid.Row="1" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="surnameTB"/>
+            <TextBlock Grid.Row="2" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="midnameTB"/>
+            <TextBlock Grid.Row="3" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="birthdaynameTB"/>
+            <TextBlock Grid.Row="4" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="phoneTB"/>
+            <TextBlock Grid.Row="5" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="addressTB"/>
+            <TextBlock Grid.Row="6" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="departmentTB"/>
+            <TextBlock Grid.Row="7" FontSize="25" Background="#eeeeee" Margin="0,5" x:Name="parentTB"/>
+            <!---->
+            <Grid Grid.Row="9" Grid.Column="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!---->
+                <Button Grid.Column="0" Style="{StaticResource MinimalButtonStyle}" Margin="10" FontSize="20" VerticalAlignment="Center" Click="selectImageButton_Click" x:Name="selectImageButton" Content="Отклонить" />
+                <Button Grid.Column="1" Style="{StaticResource MinimalButtonStyle}" Margin="10" FontSize="20" VerticalAlignment="Center" Click="confirmButton_Click" x:Name="confirmButton" Content="Добавить" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
